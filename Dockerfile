@@ -6,7 +6,7 @@ RUN apt-get update && \
     libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev \
     graphviz zip unzip git libpq-dev \
     libmemcached-dev memcached libmemcached-tools wget curl rpl libapache2-mod-evasive \
-    libpng-dev zlib1g-dev libpng-dev libxml2-dev libzip-dev libonig-dev \
+    libpng-dev zlib1g-dev libzip-dev libpng-dev libxml2-dev libzip-dev libonig-dev \
     libapache2-mod-security2 libcurl4-openssl-dev openssl  \
     libssl-dev procps htop  && a2dismod mpm_event && a2dismod mpm_worker && a2enmod mpm_prefork && a2enmod rewrite 
     
