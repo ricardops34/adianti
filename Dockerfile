@@ -1,4 +1,4 @@
-FROM php:8.1-apache   
+FROM php:8.4-apache   
 
 RUN apt-get update && \
     apt-get -y install \
@@ -9,10 +9,8 @@ RUN apt-get update && \
     libpng-dev zlib1g-dev libxml2-dev libzip-dev libonig-dev \
     libapache2-mod-security2 libcurl4-openssl-dev openssl  \
     libssl-dev procps htop  && a2dismod mpm_event && a2dismod mpm_worker && a2enmod mpm_prefork && a2enmod rewrite 
-
     
 RUN docker-php-ext-install pdo  pdo_mysql  pdo_pgsql  mbstring  opcache  gd  soap  xml    sockets  
- 
 
 RUN echo "" >> /usr/local/etc/php/php.ini && \  
     echo "error_log = /tmp/php_errors.log" >> /usr/local/etc/php/php.ini && \
@@ -33,7 +31,6 @@ RUN echo "" >> /usr/local/etc/php/php.ini && \
     echo "session.use_trans_sid = 0"           >> /usr/local/etc/php/php.ini  && \
     echo "session.entropy_file = /dev/urandom" >> /usr/local/etc/php/php.ini  && \
     echo "session.entropy_length = 32"         >> /usr/local/etc/php/php.ini     
-     
 
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
@@ -50,6 +47,5 @@ RUN rm /etc/apache2/mods-enabled/evasive.conf   && \
     echo '</IfModule>'                            >> /etc/apache2/mods-enabled/evasive.conf 
 
 RUN rpl "AllowOverride None" "AllowOverride All" /etc/apache2/apache2.conf
-
    
 EXPOSE 80
