@@ -8,6 +8,8 @@ services:
     volumes:
       - sistema_data:/var/www/html
       - sistema_apache2:/etc/apache2
+      - sistema_lib:/usr/local/lib/
+      - sistema_include:/usr/local/include
       - sistema_php:/usr/local/etc/php
     networks:
       - network_public
@@ -37,7 +39,15 @@ volumes:
     
   sistema_apache2:
     external: true
-    name: sistema_apache2       
+    name: sistema_apache2
+    
+  sistema_lib:
+    external: true
+    name: sistema_lib      
+  
+  sistema_include:
+    external: true
+    name: sistema_include
     
 networks:
   network_public:
