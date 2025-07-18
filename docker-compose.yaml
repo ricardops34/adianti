@@ -7,7 +7,7 @@ services:
     image: php:8.4-apache #php:8.1-apache
     volumes:
       - sistema_data:/var/www/html
-      - sistema_apache2:/etc/apache2/apache2
+      - sistema_apache2:/etc/apache2
       - sistema_php:/usr/local/etc/php
     networks:
       - network_public
