@@ -11,6 +11,7 @@ services:
       - sistema_lib:/usr/local/lib/
       - sistema_include:/usr/local/include
       - sistema_php:/usr/local/etc/php
+      - sistema_log:/var/log/apache2
     networks:
       - network_public
     tty: true
@@ -48,6 +49,10 @@ volumes:
   sistema_include:
     external: true
     name: sistema_include
+  
+  sistema_log:
+    external: true
+    name: sistema_include    
     
 networks:
   network_public:
