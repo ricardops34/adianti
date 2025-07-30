@@ -8,7 +8,7 @@ services:
     volumes:
       - ${NOME}_data:/var/www/html
       - ${NOME}_apache2:/etc/apache2
-      - ${NOME}_lib:/usr/local/lib/
+      - ${NOME}_lib:/usr/local/lib
       - ${NOME}_include:/usr/local/include
       - ${NOME}_php:/usr/local/etc/php
       - ${NOME}_log:/var/log/apache2
