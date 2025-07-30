@@ -1,7 +1,7 @@
 version: "3.7"
+name: ${SERVICE}
 services:
   bjsoft:
-  container_name: ${SERVICE}
     build: 
       context: ./
       dockerfile: Dockerfile 
