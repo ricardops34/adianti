@@ -1,17 +1,17 @@
 version: "3.7"
 services:
-  sistema:
+  ${NOME}:
     build: 
       context: ./
       dockerfile: Dockerfile 
     image: php:8.4-apache #php:8.1-apache
     volumes:
-      - sistema_data:/var/www/html
-      - sistema_apache2:/etc/apache2
-      - sistema_lib:/usr/local/lib/
-      - sistema_include:/usr/local/include
-      - sistema_php:/usr/local/etc/php
-      - sistema_log:/var/log/apache2
+      - ${NOME}_data:/var/www/html
+      - ${NOME}_apache2:/etc/apache2
+      - ${NOME}_lib:/usr/local/lib/
+      - ${NOME}_include:/usr/local/include
+      - ${NOME}_php:/usr/local/etc/php
+      - ${NOME}_log:/var/log/apache2
     networks:
       - network_public
     tty: true
@@ -23,36 +23,36 @@ services:
           - node.role == manager
       labels:
         - traefik.enable=true
-        - traefik.http.routers.sistema.rule=Host(`portal.bjsoft.com.br`)
-        - traefik.http.routers.sistema.entrypoints=websecure
-        - traefik.http.routers.sistema.tls.certresolver=letsencryptresolver
-        - traefik.http.routers.sistema.service=sistema
-        - traefik.http.services.sistema.loadbalancer.server.port=80
-        - traefik.http.services.sistema.loadbalancer.passHostHeader=true
+        - traefik.http.routers.${NOME}.rule=Host(`${URL}`)
+        - traefik.http.routers.${NOME}.entrypoints=websecure
+        - traefik.http.routers.${NOME}.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.${NOME}.service=${NOME}
+        - traefik.http.services.${NOME}.loadbalancer.server.port=80
+        - traefik.http.services.${NOME}.loadbalancer.passHostHeader=true
 volumes:
-  sistema_data:
+  ${NOME}_data:
     external: true
-    name: sistema_data
+    name: ${NOME}_data
   
-  sistema_php:
+  ${NOME}_php:
     external: true
-    name: sistema_php    
+    name: ${NOME}_php    
     
-  sistema_apache2:
+  ${NOME}_apache2:
     external: true
-    name: sistema_apache2
+    name: ${NOME}_apache2
     
-  sistema_lib:
+  ${NOME}_lib:
     external: true
-    name: sistema_lib      
+    name: ${NOME}_lib      
   
-  sistema_include:
+  ${NOME}_include:
     external: true
-    name: sistema_include
+    name: ${NOME}_include
   
-  sistema_log:
+  ${NOME}_log:
     external: true
-    name: sistema_include    
+    name: ${NOME}_include    
     
 networks:
   network_public:
